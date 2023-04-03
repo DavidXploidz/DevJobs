@@ -36,9 +36,11 @@ class VacanteController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Vacante $vacante)
     {
-        //
+        return view('vacantes.show',[
+            'vacante' => $vacante
+        ]);
     }
 
     /**
@@ -46,6 +48,8 @@ class VacanteController extends Controller
      */
     public function edit(Vacante $vacante)
     {
+        $this->authorize('update', $vacante);
+        
         return view('vacantes.edit', [
             'vacante' => $vacante
         ]);
